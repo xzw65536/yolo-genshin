@@ -1,0 +1,26 @@
+<annotation>
+	<folder>imageset</folder>
+	<filename>1650986166507.png</filename>
+	<path>C:\Users\Heymax\Desktop\imageset\1650986166507.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1920</width>
+		<height>1080</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>character</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>620</xmin>
+			<ymin>278</ymin>
+			<xmax>1252</xmax>
+			<ymax>906</ymax>
+		</bndbox>
+	</object>
+</annotation>

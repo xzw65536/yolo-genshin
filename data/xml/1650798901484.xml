@@ -1,0 +1,26 @@
+<annotation>
+	<folder>imageset</folder>
+	<filename>1650798901484.png</filename>
+	<path>C:\Users\Heymax\Desktop\imageset\1650798901484.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1920</width>
+		<height>1080</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>robber</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1</xmin>
+			<ymin>284</ymin>
+			<xmax>505</xmax>
+			<ymax>1080</ymax>
+		</bndbox>
+	</object>
+</annotation>

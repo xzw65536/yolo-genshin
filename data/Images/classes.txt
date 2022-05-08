@@ -1,0 +1,8 @@
+character
+hili
+slime
+caster
+bighili
+bosshili
+samurai
+robber

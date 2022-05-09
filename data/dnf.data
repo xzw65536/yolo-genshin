@@ -1,5 +1,5 @@
 classes=8
-train=./data/train.txt
-valid=./data/val.txt
-names=./data/dnf.names
+train=./yolo-genshin/data/train.txt
+valid=./yolo-genshin/data/val.txt
+names=./yolo-genshin/data/dnf.names
 

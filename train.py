@@ -259,7 +259,7 @@ def train():
 
             # Plot images with bounding boxes
             if ni < 1:
-                f = 'train_batch%g.png' % i  # filename
+                f = './yolo-genshin/train_batch%g.png' % i  # filename
                 plot_images(imgs=imgs, targets=targets, paths=paths, fname=f)
                 if tb_writer:
                     tb_writer.add_image(f, cv2.imread(f)[:, :, ::-1], dataformats='HWC')
@@ -394,12 +394,14 @@ def train():
 
 
 if __name__ == '__main__':
+    torch.backends.cudnn.enable =True
+    torch.backends.cudnn.benchmark = True
     parser = argparse.ArgumentParser()
     parser.add_argument('--epochs', type=int, default=100)  # 500200 batches at bs 16, 117263 COCO images = 273 epochs
     parser.add_argument('--batch-size', type=int, default=16)  # effective bs = batch_size * accumulate = 16 * 4 = 64
     parser.add_argument('--accumulate', type=int, default=4, help='batches to accumulate before optimizing')
-    parser.add_argument('--cfg', type=str, default='cfg/yolov3-tiny-3cls.cfg', help='*.cfg path')
-    parser.add_argument('--data', type=str, default='data/dnf.data', help='*.data path')
+    parser.add_argument('--cfg', type=str, default='./yolo-genshin/cfg/yolov3-tiny-3cls.cfg', help='*.cfg path')
+    parser.add_argument('--data', type=str, default='./yolo-genshin/data/dnf.data', help='*.data path')
     parser.add_argument('--multi-scale', action='store_true', help='adjust (67% - 150%) img_size every 10 batches')
     parser.add_argument('--img-size', nargs='+', type=int, default=[416], help='train and test image-sizes')
     parser.add_argument('--rect', action='store_true', help='rectangular training')
@@ -409,7 +411,7 @@ if __name__ == '__main__':
     parser.add_argument('--evolve', action='store_true', help='evolve hyperparameters')
     parser.add_argument('--bucket', type=str, default='', help='gsutil bucket')
     parser.add_argument('--cache-images', action='store_true', help='cache images for faster training')
-    parser.add_argument('--weights', type=str, default='weights/yolov3-tiny.conv.15', help='initial weights path')
+    parser.add_argument('--weights', type=str, default='./yolo-genshin/weights/yolov3-tiny.conv.15', help='initial weights path')
     parser.add_argument('--name', default='', help='renames results.txt to results_name.txt if supplied')
     parser.add_argument('--device', default='', help='device id (i.e. 0 or 0,1 or cpu)')
     parser.add_argument('--adam', action='store_true', help='use adam optimizer')

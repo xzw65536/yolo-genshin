@@ -5,17 +5,17 @@ from os import listdir, getcwd
 from os.path import join
 import shutil
 
-if os.path.exists("./txt/"):  # 如果文件存在
-    shutil.rmtree("./txt/")
-    os.makedirs('./txt/')
+if os.path.exists("./yolo-genshin/data/txt/"):  # 如果文件存在
+    shutil.rmtree("./yolo-genshin/data/txt/")
+    os.makedirs('./yolo-genshin/data/txt/')
 else:
-    os.makedirs('./txt/')
+    os.makedirs('./yolo-genshin/data/txt/')
 
 
 
 sets = ['train', 'test', 'val']
 
-classes = ["warrior","monster","boss"]
+classes = ["character","hili","slime","caster","bighili","bosshili","samurai","robber"]
 
 
 def convert(size, box):
@@ -33,8 +33,8 @@ def convert(size, box):
 
 
 def convert_annotation(image_id):
-    in_file = open('./xml/%s.xml' % (image_id))
-    out_file = open('./txt/%s.txt' % (image_id), 'w')
+    in_file = open('./yolo-genshin/data/xml/%s.xml' % (image_id))
+    out_file = open('./yolo-genshin/data/txt/%s.txt' % (image_id), 'w')
     tree = ET.parse(in_file)
     root = tree.getroot()
     size = root.find('size')
@@ -57,12 +57,12 @@ def convert_annotation(image_id):
 wd = getcwd()
 print(wd)
 for image_set in sets:
-    os.remove("./"+image_set+".txt")
-    if not os.path.exists('./txt/'):
-        os.makedirs('./txt/')
-    image_ids = open('./ImageSets/%s.txt' % (image_set)).read().strip().split()
-    list_file = open('./%s.txt' % (image_set), 'w')
+    os.remove("./yolo-genshin/data/"+image_set+".txt")
+    if not os.path.exists('./yolo-genshin/data/txt/'):
+        os.makedirs('./yolo-genshin/data/txt/')
+    image_ids = open('./yolo-genshin/data/ImageSets/%s.txt' % (image_set)).read().strip().split()
+    list_file = open('./yolo-genshin/data/%s.txt' % (image_set), 'w')
     for image_id in image_ids:
-        list_file.write('./data/Images/%s.png\n' % (image_id))
+        list_file.write('./yolo-genshin/data/Images/%s.png\n' % (image_id))
         convert_annotation(image_id)
     list_file.close()

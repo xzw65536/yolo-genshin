@@ -2,18 +2,18 @@ import os
 import random
 import shutil
 
-if os.path.exists("./ImageSets/"):  # 如果文件存在
-    shutil.rmtree("./ImageSets/")
-    os.makedirs('./ImageSets/')
+if os.path.exists("./yolo-genshin/data/ImageSets/"):  # 如果文件存在
+    shutil.rmtree("./yolo-genshin/data/ImageSets/")
+    os.makedirs('./yolo-genshin/data/ImageSets/')
 else:
-    os.makedirs('./ImageSets/')
+    os.makedirs('./yolo-genshin/data/ImageSets/')
 
 
 test_percent = 0.1
 train_percent = 0.8
 val_percent = 0.1
 
-xmlfilepath = './xml'
+xmlfilepath = './yolo-genshin/data/xml'
 
 total_xml = os.listdir(xmlfilepath)
 
@@ -37,9 +37,9 @@ val_list = list
 
 
 
-ftest = open('./ImageSets/test.txt', 'w')
-ftrain = open('./ImageSets/train.txt', 'w')
-fval = open('./ImageSets/val.txt', 'w')
+ftest = open('./yolo-genshin/data/ImageSets/test.txt', 'w')
+ftrain = open('./yolo-genshin/data/ImageSets/train.txt', 'w')
+fval = open('./yolo-genshin/data/ImageSets/val.txt', 'w')
 
 for i in range(num):
     name = total_xml[i][:-4] + '\n'

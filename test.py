@@ -25,7 +25,7 @@ def test(cfg,
         verbose = opt.task == 'test'
 
         # Remove previous
-        for f in glob.glob('test_batch*.png'):
+        for f in glob.glob('./yolo-genshin/test_batch*.png'):
             os.remove(f)
 
         # Initialize model
@@ -81,7 +81,7 @@ def test(cfg,
         whwh = torch.Tensor([width, height, width, height]).to(device)
 
         # Plot images with bounding boxes
-        f = 'test_batch%g.png' % batch_i  # filename
+        f = './yolo-genshin/test_batch%g.png' % batch_i  # filename
         if batch_i < 1 and not os.path.exists(f):
             plot_images(imgs=imgs, targets=targets, paths=paths, fname=f)
 
@@ -207,7 +207,7 @@ def test(cfg,
     if save_json and map and len(jdict):
         print('\nCOCO mAP with pycocotools...')
         imgIds = [int(Path(x).stem.split('_')[-1]) for x in dataloader.dataset.img_files]
-        with open('results.json', 'w') as file:
+        with open('./yolo-genshin/results.json', 'w') as file:
             json.dump(jdict, file)
 
         try:
@@ -218,7 +218,7 @@ def test(cfg,
 
         # https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocoEvalDemo.ipynb
         cocoGt = COCO(glob.glob('../coco/annotations/instances_val*.json')[0])  # initialize COCO ground truth api
-        cocoDt = cocoGt.loadRes('results.json')  # initialize COCO pred api
+        cocoDt = cocoGt.loadRes('./yolo-genshin/results.json')  # initialize COCO pred api
 
         cocoEval = COCOeval(cocoGt, cocoDt, 'bbox')
         cocoEval.params.imgIds = imgIds  # [:32]  # only evaluate these images
@@ -236,9 +236,9 @@ def test(cfg,
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog='test.py')
-    parser.add_argument('--cfg', type=str, default='cfg/yolov3-tiny-3cls.cfg', help='*.cfg path')
-    parser.add_argument('--data', type=str, default='data/dnf.data', help='*.data path')
-    parser.add_argument('--weights', type=str, default='weights/best.pt', help='weights path')
+    parser.add_argument('--cfg', type=str, default='./yolo-genshin/cfg/yolov3-tiny-3cls.cfg', help='*.cfg path')
+    parser.add_argument('--data', type=str, default='./yolo-genshin/data/dnf.data', help='*.data path')
+    parser.add_argument('--weights', type=str, default='./yolo-genshin/weights/best.pt', help='weights path')
     parser.add_argument('--batch-size', type=int, default=32, help='size of each image batch')
     parser.add_argument('--img-size', type=int, default=416, help='inference size (pixels)')
     parser.add_argument('--conf-thres', type=float, default=0.001, help='object confidence threshold')
@@ -270,7 +270,7 @@ if __name__ == '__main__':
                 t = time.time()
                 r = test(opt.cfg, opt.data, opt.weights, opt.batch_size, i, opt.conf_thres, j, opt.save_json)[0]
                 y.append(r + (time.time() - t,))
-        np.savetxt('benchmark.txt', y, fmt='%10.4g')  # y = np.loadtxt('study.txt')
+        np.savetxt('./yolo-genshin/benchmark.txt', y, fmt='%10.4g')  # y = np.loadtxt('study.txt')
 
     elif opt.task == 'study':  # Parameter study
         y = []
@@ -279,7 +279,7 @@ if __name__ == '__main__':
             t = time.time()
             r = test(opt.cfg, opt.data, opt.weights, opt.batch_size, opt.img_size, opt.conf_thres, i, opt.save_json)[0]
             y.append(r + (time.time() - t,))
-        np.savetxt('study.txt', y, fmt='%10.4g')  # y = np.loadtxt('study.txt')
+        np.savetxt('./yolo-genshin/study.txt', y, fmt='%10.4g')  # y = np.loadtxt('study.txt')
 
         # Plot
         fig, ax = plt.subplots(3, 1, figsize=(6, 6))

@@ -6,5 +6,5 @@ we use colab to train our model, here are the instructions:
     !python ./yolo-genshin/data/makeTxt.py
     !python ./yolo-genshin/data/voc_label.py
     !python ./yolo-genshin/train.py
-3. Enter the following code to do the detect process:
-    //补一下
+3. Enter the following code to do the detect process, put test file under the /test folder.
+    !python ./yolo-genshin/detect.py

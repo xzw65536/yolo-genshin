@@ -1,4 +1,5 @@
 # yolo-genshin
+our results on video detection are in output folder
 we use colab to train our model, here are the instructions:
 1. open a new notebook on colab
 2. Enter the following code to do the train process:
